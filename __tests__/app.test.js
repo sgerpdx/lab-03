@@ -72,4 +72,11 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
+  it('deletes an order by id and sends a text message', () => {
+    return request(app)
+      .delete('/api/v1/orders/1')
+      .then((res) => {
+        expect(res.body).toEqual('');
+      });
+  });
 });
