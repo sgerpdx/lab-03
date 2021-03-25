@@ -49,6 +49,17 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
+  it('gets an order by id from database sends a text message', () => {
+    return request(app)
+      .get('/api/v1/orders/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 40,
+        });
+      });
+  });
+
   // it('ASYNC/AWAIT: creates a new order in our database and sends a text message', async () => {
   //   const res = await request(app)
   //     .post('/api/v1/orders')
