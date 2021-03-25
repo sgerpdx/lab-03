@@ -32,7 +32,7 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
-  it('gets all orders in our database and sends a text message', () => {
+  it('gets all orders in the database', () => {
     return request(app)
       .get('/api/v1/orders')
       .then((res) => {
@@ -49,13 +49,25 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
-  it('gets an order by id from database sends a text message', () => {
+  it('gets an order by id from database', () => {
     return request(app)
       .get('/api/v1/orders/1')
       .then((res) => {
         expect(res.body).toEqual({
           id: '1',
           quantity: 40,
+        });
+      });
+  });
+
+  it('updates an existing order by id and sends a text message', () => {
+    return request(app)
+      .put('/api/v1/orders/1')
+      .send({ quantity: 90 })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 90,
         });
       });
   });
