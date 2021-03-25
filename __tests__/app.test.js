@@ -17,6 +17,7 @@ describe('03_separation-of-concerns-demo routes', () => {
 
   beforeEach(async () => {
     await Order.insert({ quantity: 40 });
+    await Order.insert({ quantity: 30 });
   });
 
   it('creates a new order in our database and sends a text message', () => {
@@ -25,7 +26,7 @@ describe('03_separation-of-concerns-demo routes', () => {
       .send({ quantity: 10 })
       .then((res) => {
         expect(res.body).toEqual({
-          id: '2',
+          id: '3',
           quantity: 10,
         });
       });
@@ -39,6 +40,10 @@ describe('03_separation-of-concerns-demo routes', () => {
           {
             id: '1',
             quantity: 40,
+          },
+          {
+            id: '2',
+            quantity: 30,
           },
         ]);
       });
